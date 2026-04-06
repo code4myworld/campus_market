@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from goods.services.goods_service import create_goods, delete_goods 
+from goods.forms.goods_form import GoodsForm
+from goods.services.goods_service import delete_goods 
 from goods.models import Goods
 
 def goods_list(request):
@@ -16,11 +17,18 @@ def goods_detail(request, id):
 @login_required
 def add_goods(request):
     if request.method == 'POST':
-        create_goods(request.user, request.POST, request.FILES) 
+        form = GoodsForm(request.POST, request.FILES)
 
-        return redirect('/goods/')
+        if form.is_valid():
+            goods = form.save(commit=False)  # 先不入库
+            goods.user = request.user        # 补充用户
+            goods.save()
 
-    return render(request, 'add_goods.html')
+            return redirect('/goods/')
+    else:
+        form = GoodsForm()
+
+    return render(request, 'add_goods.html', {'form': form})
 
 # “我的商品”视图
 @login_required
