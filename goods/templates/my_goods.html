@@ -1,0 +1,11 @@
+<h2>我的商品</h2>
+
+{% for item in goods %}
+    <div>
+        <h3>{{ item.title }}</h3>
+        <p>价格：{{ item.price }}</p>
+
+        <a href="/goods/detail/{{ item.id }}/">查看</a>
+        <a href="/goods/delete/{{ item.id }}/">删除</a>
+    </div>
+{% endfor %}
