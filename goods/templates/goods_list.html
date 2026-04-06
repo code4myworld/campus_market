@@ -1,18 +1,28 @@
-<h1>商品列表</h1>
+{% extends 'base.html' %}
 
-{% for item in goods %}
-    <div>
-        <a href="/goods/detail/{{ item.id }}/">
-            <h3>{{ item.title }}</h3>
-        </a>
+{% block content %}
 
-        <!-- 显示图片 -->
-        {% if item.image %}
-            <img src="{{ item.image.url }}" width="200">
-        {% endif %}
+<h2 class="mb-4">商品列表</h2>
 
+<div class="row">
+    {% for item in goods %}
+        <div class="col-md-4">
+            <div class="card mb-4">
 
-        <p>价格：{{ item.price }}</p>
-        <p>{{ item.description }}</p>
-    </div>
-{% endfor %}
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" class="card-img-top" style="height:200px;object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">￥{{ item.price }}</p>
+
+                    <a href="/goods/detail/{{ item.id }}/" class="btn btn-primary">查看详情</a>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
