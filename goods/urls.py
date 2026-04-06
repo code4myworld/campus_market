@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import goods_detail, goods_list, user_login, add_goods
+from goods.views.goods_views import goods_list, add_goods, goods_detail
+from goods.views.user_views import user_login
 
 urlpatterns = [
     path('', goods_list),

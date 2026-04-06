@@ -1,4 +1,11 @@
 <h2>{{ goods.title }}</h2>
+
+<!-- ⭐ 显示图片 -->
+{% if goods.image %}
+    <img src="{{ goods.image.url }}" width="300">
+{% endif %}
+
+
 <p>价格：{{ goods.price }}</p>
 <p>{{ goods.description }}</p>
 <p>发布者：{{ goods.user.username }}</p>

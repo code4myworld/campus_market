@@ -9,6 +9,7 @@ class Goods(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 发布时间
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to='goods/', null=True, blank=True)
     
     def __str__(self):
         return self.title

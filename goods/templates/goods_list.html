@@ -5,6 +5,13 @@
         <a href="/goods/detail/{{ item.id }}/">
             <h3>{{ item.title }}</h3>
         </a>
+
+        <!-- 显示图片 -->
+        {% if item.image %}
+            <img src="{{ item.image.url }}" width="200">
+        {% endif %}
+
+
         <p>价格：{{ item.price }}</p>
         <p>{{ item.description }}</p>
     </div>
